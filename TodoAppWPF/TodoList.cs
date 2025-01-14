@@ -1,33 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TodoAppWPF
 {
     /// <summary>
-    /// Hantera Logiken för att lägga till, ta bort och uppdatera TodoItems 
+    /// Hanterar logiken för att lägga till, ta bort och hämta todo-items.
     /// </summary>
     public class TodoList
     {
-        private List<String> tasks = new List<string>();
-        public void AddTask(string task)
+        private List<string> tasks = new List<string>();
 
+        /// <summary>
+        /// Lägger till en ny uppgift i listan.
+        /// </summary>
+        /// <param name="task">Texten för uppgiften.</param>
+        public void AddTask(string task)
         {
-            task.Add(task);
+            if (!string.IsNullOrWhiteSpace(task))
+            {
+                tasks.Add(task);
+            }
         }
-        public void RemoveTask(int index )
+
+        /// <summary>
+        /// Tar bort en uppgift från listan baserat på dess index.
+        /// </summary>
+        /// <param name="index">Index för uppgiften som ska tas bort.</param>
+        public void RemoveTask(int index)
         {
             if (index >= 0 && index < tasks.Count)
             {
                 tasks.RemoveAt(index);
             }
         }
-        public List<string> GetAllTasks()
 
+        /// <summary>
+        /// Hämtar alla uppgifter från listan.
+        /// </summary>
+        /// <returns>En kopia av listan med uppgifter.</returns>
+        public List<string> GetAllTasks()
         {
-            return tasks;
+            return new List<string>(tasks);
         }
     }
 }
+
+
